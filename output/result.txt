@@ -1,0 +1,13 @@
+(D) code/
+    (D) java
+    (D) python
+(D) data/
+    (F) clients.csv
+    (D) exports
+(D) documents/
+    (F) list.txt
+    (F) notes.txt
+    (F) project.txt
+(D) images/
+    (F) profile.png
+    (D) vacation
