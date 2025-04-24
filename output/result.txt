@@ -1,13 +1,21 @@
-(D) code/
-    (D) java
-    (D) python
-(D) data/
-    (F) clients.csv
-    (D) exports
-(D) documents/
-    (F) list.txt
-    (F) notes.txt
-    (F) project.txt
-(D) images/
-    (F) profile.png
-    (D) vacation
+(D) code - 16/04/2025 10:07:30
+  (D) java - 16/04/2025 10:07:30
+    (F) Main.java - 16/04/2025 10:07:30
+    (F) Utils.java - 16/04/2025 10:07:30
+  (D) python - 16/04/2025 10:07:30
+    (F) script.py - 16/04/2025 10:07:30
+(D) data - 16/04/2025 09:24:23
+  (F) clients.csv - 16/04/2025 09:24:23
+  (D) exports - 16/04/2025 09:24:24
+    (F) backup1.zip - 16/04/2025 09:24:24
+    (F) backup2.zip - 16/04/2025 09:24:24
+(D) documents - 16/04/2025 09:24:23
+  (F) list.txt - 16/04/2025 09:24:23
+  (F) notes.txt - 16/04/2025 09:24:23
+  (F) project.txt - 16/04/2025 09:24:23
+(D) images - 16/04/2025 09:24:23
+  (F) profile.png - 16/04/2025 09:24:23
+  (D) vacation - 16/04/2025 09:24:23
+    (F) map.svg - 16/04/2025 09:24:23
+    (F) photo1.jpg - 16/04/2025 09:24:23
+    (F) photo2.png - 16/04/2025 09:24:23

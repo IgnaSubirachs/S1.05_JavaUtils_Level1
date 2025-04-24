@@ -3,44 +3,53 @@ import java.io.File;
 public class AppRunner {
 
     public static void run(String[] args) {
+        File directoryFile = null;
+
         if (args.length < 1) {
             printUsage();
+            String defaultPath = System.getProperty("user.dir") + "/example_directory";
+            directoryFile = new File(defaultPath);
+            System.out.println("No path specified. Using: " + defaultPath);
+            displayDirectory(directoryFile);
             return;
         }
 
         File target = new File(args[0]);
 
-        // Deserialize from .ser
-        if (args.length == 1 && args[0].endsWith(".ser")) {
-            deserializeSerializedFile(target);
+        if (args.length == 1) {
+            if (args[0].endsWith(".ser")) {
+                deserializeSerializedFile(target);
+                return;
+            }
+
+            if (args[0].endsWith(".txt")) {
+                readTxtFile(target);
+                return;
+            }
+
+            if (target.isDirectory()) {
+                displayDirectory(target);
+                return;
+            }
+
+            System.err.println("Invalid input. Please provide a directory, .txt or .ser file.");
             return;
         }
 
-        // Serialize directory to .ser
-        if (args.length == 2 && args[1].endsWith(".ser")) {
-            serializeDirectory(target, new File(args[1]));
-            return;
-        }
-
-        // Export to .txt
         if (args.length == 2) {
-            exportDirectoryToTxt(target, new File(args[1]));
-            return;
+            if (args[1].endsWith(".ser")) {
+                serializeDirectory(target, new File(args[1]));
+                return;
+            }
+
+            if (args[1].endsWith(".txt")) {
+                exportDirectoryToTxt(target, new File(args[1]));
+                return;
+            }
         }
 
-        // Read .txt content
-        if (args.length == 1 && args[0].endsWith(".txt")) {
-            readTxtFile(target);
-            return;
-        }
-
-        // Display directory contents in console
-        if (target.isDirectory()) {
-            displayDirectory(target);
-            return;
-        }
-
-        System.err.println(" Invalid input. Please try again.");
+        System.err.println("⚠️ Invalid input. See usage below.");
+        printUsage();
     }
 
     private static void printUsage() {
@@ -72,7 +81,7 @@ public class AppRunner {
         try {
             outputFile.getParentFile().mkdirs();
             DirectoryExporter.exportDirectoryToFile(dir, outputFile);
-            System.out.println("Output written to: " + outputFile.getPath());
+            System.out.println("✅ Output written to: " + outputFile.getPath());
         } catch (DirectoryException e) {
             System.err.println("Export error: " + e.getMessage());
         }
@@ -88,7 +97,7 @@ public class AppRunner {
 
     private static void displayDirectory(File dir) {
         try {
-            DirectoryUtils.listDirectoryWithContents(dir);
+            DirectoryUtils.listDirectory(dir);
         } catch (DirectoryException e) {
             System.err.println("Display error: " + e.getMessage());
         }

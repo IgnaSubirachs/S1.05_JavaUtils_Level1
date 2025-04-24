@@ -14,7 +14,6 @@ public class DirectorySerializer {
         }
 
         List<DirectoryItem> items = new ArrayList<>();
-
         File[] files = directory.listFiles();
         if (files == null) {
             throw new DirectoryException("Error reading directory");
@@ -39,7 +38,6 @@ public class DirectorySerializer {
 
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(outputFile))) {
             out.writeObject(items);
-            System.out.println("✅ Fitxer serialitzat a: " + outputFile.getAbsolutePath());
         } catch (IOException e) {
             throw new DirectoryException("Error serializing file: " + e.getMessage());
         }
@@ -49,9 +47,8 @@ public class DirectorySerializer {
     public static void deserializeAndPrint(File inputFile) throws DirectoryException {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(inputFile))) {
             List<DirectoryItem> items = (List<DirectoryItem>) in.readObject();
-            System.out.println("📦 Contingut deserialitzat de: " + inputFile.getName());
             for (DirectoryItem item : items) {
-                System.out.println(item); // fa servir toString() amb data formatada
+                System.out.println(item);
             }
         } catch (IOException | ClassNotFoundException e) {
             throw new DirectoryException("Error deserializing file: " + e.getMessage());
